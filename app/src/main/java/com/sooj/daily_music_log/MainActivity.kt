@@ -39,7 +39,7 @@ class MainActivity : ComponentActivity() {
                     NavHost(navController = navController, startDestination = Screen.MainPage.route) {
                         composable(Screen.MainPage.route) { MainPageScreen(navController) }
                         composable(Screen.SearchPage.route) { SearchPageScreen(navController, hiltViewModel())}
-                        composable(Screen.PosterList.route) { PosterListScreen(navController) }
+                        composable(Screen.PosterList.route) { PosterListScreen(navController, hiltViewModel()) }
                         composable(Screen.DetailPage.route) { DetailPageScreen(navController, hiltViewModel()) }
                         composable(Screen.EditDetailPage.route) { EditDetailPageScreen() }
 

@@ -53,13 +53,16 @@ fun SearchPageScreen(navController: NavController, musicViewModel: TrackViewMode
             .padding(start = 8.dp, end = 8.dp)
     )
     {
-        IconButton(onClick = { navController.popBackStack() }) {
-            Image(imageVector = Icons.Default.BackHand, contentDescription = "back")
-        }
+
         Column {
-            Spacer(modifier = Modifier.height(8.dp))
-            IconButton(onClick = { navController.popBackStack() }) {
-                Image(imageVector = Icons.Default.LibraryMusic, contentDescription = "list")
+            Row {
+                IconButton(onClick = { navController.popBackStack() }) {
+                    Image(imageVector = Icons.Default.BackHand, contentDescription = "back")
+                }
+                Spacer(modifier = Modifier.height(8.dp))
+                IconButton(onClick = { navController.popBackStack() }) {
+                    Image(imageVector = Icons.Default.LibraryMusic, contentDescription = "list")
+                }
             }
             Spacer(modifier = Modifier.height(16.dp))
 
