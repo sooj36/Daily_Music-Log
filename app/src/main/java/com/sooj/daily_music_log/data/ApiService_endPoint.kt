@@ -1,7 +1,8 @@
 package com.sooj.daily_music_log.data
 
 import com.sooj.daily_music_log.BuildConfig
-import com.sooj.daily_music_log.domain.SearchModel_dc
+import com.sooj.daily_music_log.domain.api_model.GetInfoModel_dc
+import com.sooj.daily_music_log.domain.api_model.SearchModel_dc
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query

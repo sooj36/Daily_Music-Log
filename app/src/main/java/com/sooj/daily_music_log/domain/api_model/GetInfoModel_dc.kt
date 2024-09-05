@@ -1,4 +1,4 @@
-package com.sooj.daily_music_log.data
+package com.sooj.daily_music_log.domain.api_model
 
 import com.google.gson.annotations.SerializedName
 
