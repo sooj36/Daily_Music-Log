@@ -1,5 +1,6 @@
 package com.sooj.daily_music_log.presentation.viewModel
 
+import android.util.Log
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
@@ -9,6 +10,7 @@ import com.sooj.daily_music_log.domain.api_model.Track
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
@@ -36,9 +38,52 @@ class TrackViewModel @Inject constructor(
 
     fun getMusic_vm(track: String) {
         viewModelScope.launch(Dispatchers.IO) {
-
+            viewModelScope.launch(Dispatchers.IO) {
+                try {
+                    val trackinfo = repository.getMusic_impl(track)
+                    withContext(Dispatchers.Main) {
+                        _searchList.value = trackinfo
+                    }
+                } catch (e : Exception) {
+                    Log.e("sj_getMusic_not", "${e.message}")
+                }
+            }
         }
     }
 
+    /** 셀렉 트랙 */
+    fun selectedTrack_vm(track: Track) {
+        _selectedTrack.value = track
+
+        getPoster_vm()
+    }
+
+    /** 셀렉 트랙으로 get 포스터 */
+    fun getPoster_vm() {
+        val selectedPosterInfo = _selectedTrack.value ?: return
+
+        viewModelScope.launch(Dispatchers.IO) {
+            Log.d("sj_vm(↓) GETPOSTER", "Running on thread: ${Thread.currentThread().name}")
+            val albumInfo = repository.getPoster_impl(
+                selectedPosterInfo.name ?: "트랙",
+                selectedPosterInfo.artist ?: "아티스트"
+            )
+            if (albumInfo != null) {
+                val albumImageUrl = albumInfo.image.find { it.size == "large" }?.url
+                withContext(Dispatchers.Main) {
+                    _getImage.value = albumImageUrl
+                    Log.d("sj_vm getposter withcontext", "Running on thread: ${Thread.currentThread().name}")
+                }
+            } else {
+                Log.e("sj 포스터 에러", " 포스터 에러")
+            }
+            Log.d("sj_vm(↑) GETPOSTER", "Running on thread: ${Thread.currentThread().name}")
+        }
+    }
+
+    /** 데이터 불러오는 메서드 */
+    fun getAllTracks_vm() {
+
+    }
 
 }
