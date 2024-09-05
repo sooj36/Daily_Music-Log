@@ -8,7 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavController
 
 @Composable
-fun MainPage(navController : NavController) {
+fun MainPageScreen(navController : NavController) {
     IconButton(onClick = { navController.navigate("search_page") }) {
         Image(imageVector = Icons.Default.LibraryMusic, contentDescription = "NoteList")
     }
