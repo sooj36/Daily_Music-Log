@@ -2,6 +2,7 @@ package com.sooj.daily_music_log.domain
 
 object Constant {
     const val BASE_URL = "https://ws.audioscrobbler.com/"
+    //
 }
 
 
