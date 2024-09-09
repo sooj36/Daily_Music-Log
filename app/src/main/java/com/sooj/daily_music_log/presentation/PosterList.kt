@@ -65,7 +65,7 @@ fun PosterListScreen(navController: NavController, musicViewModel: TrackViewMode
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                IconButton(onClick = { navController.navigate("write_post") }) {
+                IconButton(onClick = { navController.navigate("detail_page") }) {
                     Image(
                         imageVector = Icons.Default.MusicNote,
                         contentDescription = "posting",
