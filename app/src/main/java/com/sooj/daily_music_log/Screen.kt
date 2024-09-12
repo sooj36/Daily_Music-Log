@@ -7,4 +7,6 @@ enum class Screen (val route : String) {
     DetailPage("detail_page"),
     EditDetailPage("edit_detail_page")
     //
+    //g
+    //
 }
